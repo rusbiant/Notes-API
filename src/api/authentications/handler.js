@@ -11,10 +11,9 @@ class AuthenticationsHandler {
     this.putAuthenticationHandler = this.putAuthenticationHandler.bind(this);
     this.deleteAuthenticationHandler = this.deleteAuthenticationHandler.bind(this);
   }
- 
+
   async postAuthenticationHandler(request, h) {
     try {
-
       // cek jika username dan password sudah sesuia schema joi
       this._validator.validatePostAuthenticationPayload(request.payload);
 
@@ -39,7 +38,6 @@ class AuthenticationsHandler {
       });
       response.code(201);
       return response;
-
     } catch (error) {
       if (error instanceof ClientError) {
         const response = h.response({
@@ -49,7 +47,6 @@ class AuthenticationsHandler {
         response.code(error.statusCode);
         return response;
       }
- 
       // Server ERROR!
       const response = h.response({
         status: 'error',
@@ -79,7 +76,6 @@ class AuthenticationsHandler {
           accessToken,
         },
       };
-
     } catch (error) {
       if (error instanceof ClientError) {
         const response = h.response({
@@ -89,7 +85,6 @@ class AuthenticationsHandler {
         response.code(error.statusCode);
         return response;
       }
- 
       // Server ERROR!
       const response = h.response({
         status: 'error',
@@ -115,7 +110,6 @@ class AuthenticationsHandler {
         status: 'success',
         message: 'refresh token berhasil dihapus',
       };
-
     } catch (error) {
       if (error instanceof ClientError) {
         const response = h.response({
@@ -125,7 +119,6 @@ class AuthenticationsHandler {
         response.code(error.statusCode);
         return response;
       }
- 
       // Server ERROR!
       const response = h.response({
         status: 'error',
@@ -136,7 +129,6 @@ class AuthenticationsHandler {
       return response;
     }
   }
-
 }
 
 module.exports = AuthenticationsHandler;
